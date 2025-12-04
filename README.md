@@ -1,3 +1,22 @@
+# my-react-app
+
+Proyecto React creado con Create React App.
+
+![CI](https://github.com/marioponce2022/react/actions/workflows/ci.yml/badge.svg)
+
+Descripción
+- Proyecto de ejemplo con configuración mínima para desarrollo y CI.
+
+Comandos útiles:
+
+```powershell
+npm install
+npm start      # desarrollo
+npm run build  # generar build de producción
+npm test       # ejecutar tests
+```
+
+Licencia: sin especificar
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
