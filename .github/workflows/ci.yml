@@ -1,5 +1,10 @@
 name: CI
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 on:
   push:
     branches: [ master ]
@@ -28,3 +33,21 @@ jobs:
         env:
           CI: true
         run: npm test -- --watchAll=false
+
+      - name: Upload build to GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./build
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+
+      - name: Deploy to Netlify (conditional)
+        if: ${{ secrets.NETLIFY_AUTH_TOKEN && secrets.NETLIFY_SITE_ID }}
+        uses: nwtgck/actions-netlify-deploy@v1.3.5
+        with:
+          publish-dir: ./build
+          production: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
